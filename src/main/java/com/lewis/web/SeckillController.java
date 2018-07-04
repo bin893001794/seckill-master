@@ -53,7 +53,11 @@ public class SeckillController
         return "detail";
     }
 
-    //ajax ,json暴露秒杀接口的方法
+    /**
+     * ajax ,json暴露秒杀接口的方法
+     * 返回秒杀地址以及第一次将对象从数据库中查出来存到缓存中，否则直接从缓存中获取对象
+     */
+
     @RequestMapping(value = "/{seckillId}/exposer",
                     method = RequestMethod.GET,
                     produces = {"application/json;charset=UTF-8"})
@@ -73,6 +77,13 @@ public class SeckillController
         return result;
     }
 
+    /**
+     * 开始秒杀操作
+     * @param seckillId
+     * @param md5
+     * @param userPhone
+     * @return
+     */
     @RequestMapping(value = "/{seckillId}/{md5}/execution",
             method = RequestMethod.POST,
             produces = {"application/json;charset=UTF-8"})
